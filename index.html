@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genera tu QR Gratis</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+                border-radius: 10px;
+  max-width: 1200px;
+  margin: 90px auto;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+        
+        /* Sección Hero */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 5%;
+            min-height: 80vh;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #ffcc00;
+            color: #333;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background-color: #ffd633;
+        }
+        
+        .audio-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .audio-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background-color: #45a049;
+        }
+        
+        /* Sección de características */
+        .features {
+            padding: 80px 5%;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            opacity: 0.8;
+        }
+        
+        /* Sección de usos */
+        .usos {
+            padding: 80px 5%;
+            text-align: center;
+        }
+        
+        .usos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .uso-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .uso-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .uso-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        
+        .uso-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .uso-card p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Sección de cómo funciona */
+        .how-it-works {
+            padding: 80px 5%;
+            text-align: center;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 50px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #ffcc00;
+            color: #333;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        /* Sección de aviso */
+        .aviso {
+            padding: 80px 5%;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .aviso-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .aviso h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #ffcc00;
+        }
+        
+        .aviso h3 {
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+            color: #ffcc00;
+        }
+        
+        .aviso p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+        
+        /* Sección de llamada a la acción */
+        .cta-section {
+            padding: 100px 5%;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        /* QR Animation */
+        .qr-animation {
+            width: 200px;
+            height: 200px;
+            margin: 40px auto;
+            position: relative;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .qr-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 49%, #000 49%, #000 51%, transparent 51%),
+                linear-gradient(transparent 49%, #000 49%, #000 51%, transparent 51%);
+            background-size: 20px 20px;
+            animation: scan 3s infinite linear;
+        }
+        
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 5%;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .aviso-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i>🔲</i>
+            <span>genera tu qr gratis</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#features">Características</a></li>
+                <li><a href="#usos">Usos</a></li>
+                <li><a href="#how-it-works">Cómo funciona</a></li>
+                <li><a href="#aviso">Aviso Legal</a></li>
+                <li><a href="#cta">Generar QR</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Genera tu qr gratis </h1>
+        <p>Potencia tu negocio, empresa, restaurante o proyecto creativo con códigos QR personalizados. Rápido, sencillo y 100% gratuito.</p>
+        <div class="qr-animation">
+            <div class="qr-pattern"></div>
+        </div>
+        <a href="#cta" class="cta-button">Crear QR Ahora</a>
+        <button class="audio-button" id="escucharBtn">Escuchar con IA</button>
+    </section>
+    
+    <section class="features" id="features">
+        <h2 class="section-title">Características Principales</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Rápido y Sencillo</h3>
+                <p>Genera tu código QR en segundos con nuestra interfaz intuitiva y fácil de usar.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Completamente Seguro</h3>
+                <p>No almacenamos tus datos personales. Tu privacidad es nuestra prioridad.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💯</div>
+                <h3>100% Gratuito</h3>
+                <p> Crea todos los QR que necesites gratis.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="usos" id="usos">
+        <h2 class="section-title">Usa QR para tu Negocio o Proyecto</h2>
+        <div class="usos-grid">
+            <div class="uso-card">
+                <div class="uso-icon">🏢</div>
+                <h3>Empresas</h3>
+                <p>Comparte información corporativa, enlaces a sitios web, perfiles de redes sociales y más.</p>
+            </div>
+            <div class="uso-card">
+                <div class="uso-icon">🛍️</div>
+                <h3>Comercios</h3>
+                <p>Muestra catálogos de productos, promociones especiales y direcciones de tus tiendas.</p>
+            </div>
+            <div class="uso-card">
+                <div class="uso-icon">🍽️</div>
+                <h3>Restaurantes</h3>
+                <p>Ofrece menús digitales, reservas en línea y promociones exclusivas para clientes.</p>
+            </div>
+            <div class="uso-card">
+                <div class="uso-icon">🎨</div>
+                <h3>Creatividad</h3>
+                <p>Comparte portfolios, trabajos artísticos, proyectos personales y contenido exclusivo.</p>
+            </div>
+            <div class="uso-card">
+                <div class="uso-icon">🎭</div>
+                <h3>Entretenimiento</h3>
+                <p>Promociona eventos, shows, lanzamientos y contenido multimedia interactivo.</p>
+            </div>
+            <div class="uso-card">
+                <div class="uso-icon">📱</div>
+                <h3>Apps y Redes</h3>
+                <p>Comparte enlaces de descarga de apps, perfiles sociales y contenido viral.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title">Cómo Funciona</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Personaliza tu QR</h3>
+                <p>Elige colores, añade un logo o ajusta el diseño según tus preferencias.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Descarga y comparte</h3>
+                <p>Descarga tu código QR en alta calidad y compártelo donde quieras.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="aviso" id="aviso">
+        <div class="aviso-content">
+            <h2>Aviso de Responsabilidad</h2>
+            
+            <p><strong>Nosotros no somos responsables por el uso de los datos generados en el código QR.</strong> El almacenamiento, distribución o envío de dicha información es responsabilidad exclusiva del usuario. Los programadores no se hacen responsables por el uso indebido o la difusión de datos personales del usuario.</p>
+            
+            <p> Los programadores actúan conforme a las leyes de propiedad intelectual que creo esta plataforma web y protección de datos. Al utilizar esta herramienta, el usuario asume toda la responsabilidad sobre la información que genere, descargue o comparta con otras personas. El usuario, al acceder o visualizar este sitio web, también acepta que su visita puede ser registrada como parte del funcionamiento del sistema.</p>
+            
+            <h3>Aclaración:</h3>
+            
+            <p>Si el usuario incluye datos como título, descripción, sitio web, redes sociales (YouTube, Facebook, Instagram, Twitter, LinkedIn) o contactos personales (número de teléfono, correo electrónico, dirección, empresa, entre otros), nosotros no somos responsables por el uso que otras personas hagan de esa información ni por los posibles riesgos que esto conlleve.</p>
+            
+            <p>Tampoco asumimos ninguna responsabilidad por actos que constituyan delitos digitales, como fraude, estafa, grooming o la difusión o venta de contenido íntimo. Cualquier acción de este tipo es responsabilidad exclusiva del usuario que la cometa, especialmente si el propio usuario generó el código QR, descargó los datos y los compartió con otras personas que luego los utilizaron de forma indebida.</p>
+        </div>
+    </section>
+    
+    <section class="cta-section" id="cta">
+        <h2>¿Listo para crear tu código QR?</h2>
+        <p>Únete a miles de usuarios que ya están utilizando nuestro generador de QR gratuito para impulsar sus negocios y proyectos creativos.</p>
+        <a href="indexdatos.html" class="cta-button">Comenzar Ahora</a>
+        <button class="audio-button" id="escucharBtn2">Escuchar con IA</button>
+    </section>
+
+    <script>
+        // Efecto de desplazamiento suave para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animación de aparición para las tarjetas de características
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Aplicar animación a las tarjetas de características
+        document.querySelectorAll('.feature-card, .step, .uso-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+        
+        // Efecto de partículas en el fondo
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.style.position = 'fixed';
+            particlesContainer.style.top = '0';
+            particlesContainer.style.left = '0';
+            particlesContainer.style.width = '100%';
+            particlesContainer.style.height = '100%';
+            particlesContainer.style.pointerEvents = 'none';
+            particlesContainer.style.zIndex = '-1';
+            document.body.appendChild(particlesContainer);
+            
+            for(let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Añadir la animación CSS para las partículas
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes float {
+                    0% {
+                        transform: translateY(0) translateX(0);
+                        opacity: 0.7;
+                    }
+                    50% {
+                        transform: translateY(-20px) translateX(10px);
+                        opacity: 0.3;
+                    }
+                    100% {
+                        transform: translateY(0) translateX(0);
+                        opacity: 0.7;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Llamar a la función para crear partículas
+        createParticles();
+        
+        // Animación del QR
+        const qrAnimation = document.querySelector('.qr-animation');
+        setInterval(() => {
+            qrAnimation.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                qrAnimation.style.transform = 'scale(1)';
+            }, 300);
+        }, 3000);
+        
+        // Función para leer el texto con síntesis de voz
+        function leerTextoConIA() {
+            // Obtener todo el texto de la página
+            const elementosTexto = document.querySelectorAll('h1, h2, h3, p, li');
+            let textoCompleto = '';
+            
+            elementosTexto.forEach(elemento => {
+                // Excluir el texto de los botones
+                if (!elemento.closest('button') && !elemento.closest('nav')) {
+                    textoCompleto += elemento.textContent + '. ';
+                }
+            });
+            
+            // Crear síntesis de voz
+            const synthesis = window.speechSynthesis;
+            
+            // Cancelar cualquier lectura en curso
+            synthesis.cancel();
+            
+            // Crear el objeto de utterance
+            const utterance = new SpeechSynthesisUtterance(textoCompleto);
+            
+            // Configurar propiedades de voz
+            utterance.lang = 'es-ES';
+            utterance.rate = 1.0;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+            
+            // Iniciar la lectura
+            synthesis.speak(utterance);
+            
+            // Cambiar el texto del botón mientras se está reproduciendo
+            const botones = document.querySelectorAll('.audio-button');
+            botones.forEach(boton => {
+                boton.textContent = 'Detener Audio';
+                boton.style.backgroundColor = '#f44336';
+            });
+            
+            // Restaurar el texto del botón cuando termine la lectura
+            utterance.onend = function() {
+                botones.forEach(boton => {
+                    boton.textContent = 'Escuchar con IA';
+                    boton.style.backgroundColor = '#4CAF50';
+                });
+            };
+        }
+        
+        // Función para detener la lectura
+        function detenerAudio() {
+            const synthesis = window.speechSynthesis;
+            synthesis.cancel();
+            
+            const botones = document.querySelectorAll('.audio-button');
+            botones.forEach(boton => {
+                boton.textContent = 'Escuchar con IA';
+                boton.style.backgroundColor = '#4CAF50';
+            });
+        }
+        
+        // Controlar los botones de audio
+        document.querySelectorAll('.audio-button').forEach(boton => {
+            boton.addEventListener('click', function() {
+                const synthesis = window.speechSynthesis;
+                
+                if (synthesis.speaking && !synthesis.paused) {
+                    detenerAudio();
+                } else {
+                    leerTextoConIA();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
